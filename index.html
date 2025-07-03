@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment + Tools Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+    }
+    .login-container, .dashboard {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .login-container.active, .dashboard.active {
+      display: flex;
+    }
+    .login-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    .login-box input {
+      display: block;
+      width: 80%;
+      margin: 10px auto;
+      padding: 8px;
+    }
+    .login-box button {
+      padding: 8px 16px;
+      background: #4CAF50;
+      border: none;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .dashboard-content {
+      max-width: 600px;
+      width: 100%;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .dashboard-content img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+    .payment-info {
+      text-align: center;
+      margin: 15px 0;
+    }
+    .payment-info p {
+      margin: 5px 0;
+    }
+    .menu-section {
+      margin-top: 20px;
+    }
+    .menu-section h3 {
+      background: #4CAF50;
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .menu-section select, .menu-section input, .menu-section button {
+      width: 100%;
+      margin: 5px 0;
+      padding: 8px;
+    }
+    video {
+      width: 300px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-container active">
+  <div class="login-box">
+    <video src="https://files.catbox.moe/2utsl9.mp4" autoplay muted loop></video>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </div>
+</div>
+
+<div class="dashboard">
+  <div class="dashboard-content">
+    <img src="https://files.catbox.moe/hfd11r.jpeg" alt="Dashboard Marga">
+    <div class="payment-info">
+      <p><strong>DANA:</strong> 082173490126</p>
+      <p><strong>OVO:</strong> 082173490126</p>
+      <p><strong>QRIS:</strong> <a href="https://wa.me/6282173490126" target="_blank">Klik di sini</a></p>
+    </div>
+
+    <!-- Bug WA -->
+    <div class="menu-section">
+      <h3>Bug WA</h3>
+      <select id="bugwa-menu">
+        <option value="invis-x">Invis-X</option>
+        <option value="alya-hard">Alya-Hard</option>
+        <option value="fc-invis">FC-Invis</option>
+        <option value="fc-beta">FC-Beta</option>
+        <option value="delay-invis">Delay-Invis</option>
+        <option value="blank-invis">Blank-Invis</option>
+        <option value="alya-blank">Alya-Blank</option>
+        <option value="alya-combo">Alya-Combo</option>
+      </select>
+      <input type="text" id="bugwa-nomor" placeholder="Nomor Target (628xxx)">
+      <input type="password" id="bugwa-pw" placeholder="Password (alya)">
+      <input type="text" id="bugwa-waifu" placeholder="Waifu (alya)">
+      <button onclick="sendBugWA()">Kirim Bug WA</button>
+    </div>
+
+    <!-- DDoS -->
+    <div class="menu-section">
+      <h3>DDoS</h3>
+      <select id="ddos-menu">
+        <option value="layer7">Layer7</option>
+        <option value="itcp">ITCP</option>
+        <option value="icmp">ICMP</option>
+        <option value="flood">Flood</option>
+        <option value="axel-waifu">Axel-Waifu</option>
+      </select>
+      <input type="text" id="ddos-url" placeholder="URL Target">
+      <input type="password" id="ddos-pw" placeholder="Password (waifu alya)">
+      <button onclick="sendDDoS()">Mulai DDoS</button>
+    </div>
+
+    <!-- Tools Attacker WA -->
+    <div class="menu-section">
+      <h3>Tools Attacker WA ☠️</h3>
+      <select id="attackerwa-menu">
+        <option value="ban-wa">Ban-WA</option>
+        <option value="keno-medium">Keno-Medium</option>
+        <option value="kenon-hard">Kenon-Hard</option>
+        <option value="kenon-manen">Kenon-Manen</option>
+        <option value="keno-manenbatu">Keno-Manenbatu</option>
+        <option value="keno-immposible">Keno-Impossible</option>
+      </select>
+      <input type="text" id="attackerwa-nomor" placeholder="Nomor Target (628xxx)">
+      <input type="password" id="attackerwa-pw" placeholder="Password (axeltressert)">
+      <button onclick="sendAttackerWA()">Jalankan</button>
+    </div>
+
+    <!-- Tools Deface -->
+    <div class="menu-section">
+      <h3>Tools Deface</h3>
+      <select id="deface-menu">
+        <option value="defa-invis">Defa-Invis</option>
+        <option value="defa-easy">Defa-Easy</option>
+        <option value="deface-ddos">Deface-DDoS</option>
+        <option value="deface-☠️">Deface-☠️</option>
+      </select>
+      <input type="text" id="deface-url" placeholder="URL Target">
+      <input type="text" id="deface-port" placeholder="Port">
+      <input type="text" id="deface-teks" placeholder="Teks">
+      <button onclick="sendDeface()">Jalankan Deface</button>
+    </div>
+
+    <!-- Dashboard Anime (Placeholder) -->
+    <div class="menu-section">
+      <h3>Dashboard Foto Anime (Coming Soon)</h3>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function login() {
+    const usn = document.getElementById('username').value;
+    const pw = document.getElementById('password').value;
+    if(usn && pw){
+      document.querySelector('.login-container').classList.remove('active');
+      document.querySelector('.dashboard').classList.add('active');
+    } else {
+      alert("Isi username dan password!");
+    }
+  }
+
+  function sendBugWA() {
+    alert("Bug WA dikirim (function isi sendiri)");
+  }
+
+  function sendDDoS() {
+    alert("DDoS dimulai (function isi sendiri)");
+  }
+
+  function sendAttackerWA() {
+    alert("Attacker WA dijalankan (function isi sendiri)");
+  }
+
+  function sendDeface() {
+    alert("Deface dijalankan (function isi sendiri)");
+  }
+</script>
+
+</body>
+</html>
